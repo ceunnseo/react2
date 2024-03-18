@@ -3,8 +3,13 @@
   display : flex;
   justify-content: center;
   align-items: center;
+  background : url(https://i.pinimg.com/564x/fd/c8/0b/fdc80b61c0ae6fc49dd41559a9d4c6b3.jpg);
+  background-repeat: no-repeat;
+  background-size : cover;
 }
-.container {
+.weather-box {
+  border : 3px solid white;
+  padding : 50px;
   display : flex;
   flex-direction: column;
   justify-content: center;
@@ -15,4 +20,11 @@
 }
 #loc {
   font-size: 30px;
+}
+.container {
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height : 100vh;
 }

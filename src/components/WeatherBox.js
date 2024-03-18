@@ -1,11 +1,11 @@
 import React from 'react'
 
-const WeatherBox = (props) => {
+const WeatherBox = ({weather}) => {
   return (
-    <div className = "container">
-        <div id = "loc">{props.loc}</div>
-        <div>{props.celsius}&deg;C</div>
-        <div>{props.abs}</div>
+    <div className = "weather-box">
+        <div id = "loc">{weather?.name}</div>
+        <div>{weather?.main.temp}&deg;C</div>
+        <div>{weather?.weather[0].description}</div>
     </div>
   )
 }
