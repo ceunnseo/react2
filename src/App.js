@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import WeatherBox from './components/WeatherBox';
 import WeatherButton from './components/WeatherButton';
+import ClipLoader from "react-spinners/ClipLoader";
 const API_KEY = `073de8edeeb6cfc808889bd776923a93`
 /*
 1. 앱이 실행되자마자 현재 위치 기반의 날씨가 보인다.
@@ -11,6 +12,7 @@ function App() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
   const cities = ['paris', 'new york']
+  const [loading, setLoading] = useState(false);
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       let lat = position.coords.latitude;
@@ -20,16 +22,20 @@ function App() {
   }
   const getWeatherByCurrentLocation = async (lat, lon) => {
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+    setLoading(true)
     let response = await fetch(url)
     let data = await response.json();
     setWeather(data);
+    setLoading(false)
   }
   const getWeatherByCity = async () => {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+    setLoading(true)
     let response = await fetch(url);
     let data = await response.json();
     console.log("data!", data);
     setWeather(data);
+    setLoading(false)
   }
   useEffect(()=> {
     if (city === "") {
@@ -42,10 +48,14 @@ function App() {
 
   return (
     <div>
-      <div className = "container">
-        <WeatherBox weather={weather}/>
-        <WeatherButton cities = {cities} setCity = {setCity}/>
-      </div>
+      {loading?<ClipLoader
+        color="#f88c6b"
+        loading={loading}
+        size={50}
+      /> : <div className = "container">
+      <WeatherBox weather={weather}/>
+      <WeatherButton cities = {cities} setCity = {setCity} getCurrentLocation={getCurrentLocation}/>
+    </div>}
     </div>
   );
 }
