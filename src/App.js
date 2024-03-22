@@ -5,9 +5,7 @@ import WeatherBox from './components/WeatherBox';
 import WeatherButton from './components/WeatherButton';
 import ClipLoader from "react-spinners/ClipLoader";
 const API_KEY = `073de8edeeb6cfc808889bd776923a93`
-/*
-1. 앱이 실행되자마자 현재 위치 기반의 날씨가 보인다.
-*/
+
 function App() {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
@@ -21,27 +19,55 @@ function App() {
     })
   }
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-    setLoading(true)
-    let response = await fetch(url)
-    let data = await response.json();
-    setWeather(data);
-    setLoading(false)
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      let response = await fetch(url)
+      let data = await response.json();
+      if (data.cod === 200) {
+        //console.log("성공")
+        setWeather(data);
+        setLoading(false);
+      }
+      else {
+        //console.log("실패");
+        throw new Error(data.message)
+      } 
+    }
+    catch (err) {
+      setWeather(null); //null 넘겨줌
+      setLoading(false);
+    }
+    
+    
   }
   const getWeatherByCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-    setLoading(true)
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("data!", data);
-    setWeather(data);
-    setLoading(false)
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+      setLoading(true)
+      let response = await fetch(url);
+      let data = await response.json();
+      if (data.cod === 200) {
+        //console.log("성공")
+        setWeather(data);
+        setLoading(false);
+      }
+      else {
+        //console.log("실패");
+        throw new Error(data.message)
+      } 
+    }
+    catch (err) {
+      setWeather(null);
+      setLoading(false);
+    }
   }
   useEffect(()=> {
     if (city === "") {
+      setLoading(true);
       getCurrentLocation();
     }
     else {
+      setLoading(true);
       getWeatherByCity();
     }
   }, [city]) //componentDidMount -> 렌더하자마자 바로 실행된다.

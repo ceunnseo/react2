@@ -6,7 +6,7 @@ const WeatherButton = ({cities, setCity, getCurrentLocation }) => {
     <div>
       <Button variant="warning" onClick={()=>getCurrentLocation()}>current</Button>
       {cities.map((item) => (
-        <Button variant="warning" onClick={()=>setCity(item)}>{item}</Button>
+        <Button variant="warning" key = {item} onClick={()=>setCity(item)}>{item}</Button>
       ))}
     </div>
   )
