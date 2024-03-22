@@ -25,6 +25,7 @@ function App() {
       let data = await response.json();
       if (data.cod === 200) {
         //console.log("성공")
+        console.log(data);
         setWeather(data);
         setLoading(false);
       }
