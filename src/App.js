@@ -4,13 +4,17 @@ import { useEffect, useState } from 'react';
 import WeatherBox from './components/WeatherBox';
 import WeatherButton from './components/WeatherButton';
 import ClipLoader from "react-spinners/ClipLoader";
+import cityData from "./cities_list.json"
 const API_KEY = `073de8edeeb6cfc808889bd776923a93`
-
 function App() {
+  const cities = ['current']
+  cityData.forEach(function(item) {
+    cities.push(item['name']);
+  });
+  console.log(cities);
   const [selectedCity, setSelectedCity] = useState('current');
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
-  const cities = ['current', 'paris', 'new york']
   const [loading, setLoading] = useState(false);
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(async (position) => {

@@ -101,6 +101,13 @@
   width : 200px;
 }
 select {
+  box-sizing : border-box;
   width : 100%;
   text-align-last:center;
+  border : 2px solid #C4C4C4;
+  border-radius : 10px;
+}
+select:focus {
+  box-sizing : border-box;
+  border : 2px solid #AD88C6;
 }
