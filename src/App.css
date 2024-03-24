@@ -1,23 +1,36 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 #root {
+  font-family: 'GmarketSansMedium';
+  color : white;
   height: 100vh;
   display : flex;
   justify-content: center;
   align-items: center;
-  background : url(https://i.pinimg.com/564x/fd/c8/0b/fdc80b61c0ae6fc49dd41559a9d4c6b3.jpg);
+  background-color: #1A1D26;
+  overflow:hidden;
+  /*background : url(https://i.pinimg.com/564x/fd/c8/0b/fdc80b61c0ae6fc49dd41559a9d4c6b3.jpg);
   background-repeat: no-repeat;
-  background-size : cover;
+  background-size : cover;*/
 }
+
 .weather-box {
-  border : 3px solid white;
   padding : 10px;
   display : flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  /*background-color: #2D3241;*/
   width : 300px;
   height : 300px;
+  border-radius: 20px;
+  margin : 0px 10px;
 }
+
 /*전체 컨테이너*/
 .container {
   display : flex;
@@ -33,6 +46,7 @@
 }
 /*온도가 담긴 컨테이너박스*/
 #temp_box {
+  width : 80px;
   margin-right : 20px;
   display : flex;
   flex-direction: column;
@@ -41,10 +55,22 @@
 }
 
 #temp {
+  width : 100%;
   font-size : 30px;
+  text-align : center;
 }
 #temp_max_min {
-  font-size : 15px;
+  display : flex;
+  flex-direction: row;
+  width : 100%;
+  justify-content: space-between;
+  font-size : 13px;
+}
+#temp_max {
+  color : #FC819E;
+}
+#temp_min {
+  color : #59D5E0;
 }
 
 
@@ -67,4 +93,14 @@
   width : 150px;
   height : 150px;
   object-fit : cover;
+}
+
+
+/*하단 select box*/
+.weather-button {
+  width : 200px;
+}
+select {
+  width : 100%;
+  text-align-last:center;
 }

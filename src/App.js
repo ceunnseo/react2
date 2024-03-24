@@ -7,9 +7,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 const API_KEY = `073de8edeeb6cfc808889bd776923a93`
 
 function App() {
+  const [selectedCity, setSelectedCity] = useState('current');
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
-  const cities = ['paris', 'new york']
+  const cities = ['current', 'paris', 'new york']
   const [loading, setLoading] = useState(false);
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
@@ -81,7 +82,7 @@ function App() {
         size={50}
       /> : <div className = "container">
       <WeatherBox weather={weather}/>
-      <WeatherButton cities = {cities} setCity = {setCity} getCurrentLocation={getCurrentLocation}/>
+      <WeatherButton cities = {cities} setCity = {setCity} getCurrentLocation={getCurrentLocation} selectedCity = {selectedCity} setSelectedCity={setSelectedCity}/>
     </div>}
     </div>
   );

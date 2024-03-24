@@ -21,7 +21,10 @@ const WeatherBox = ({weather}) => {
       <div id = "temp_and_desc">
         <div id = "temp_box">
           <div id = "temp">{weather && Math.floor(weather?.main.temp)+'°C'}</div>
-          <div id = "temp_max_min">{weather && Math.floor(weather?.main.temp_max)+'°C'}  {weather && Math.floor(weather?.main.temp_min)+'°C'}</div>
+          <div id = "temp_max_min">
+            <div id = "temp_max">{weather && Math.floor(weather?.main.temp_max)+'°C'}</div>
+            <div id = "temp_min">{weather && Math.floor(weather?.main.temp_min)+'°C'}</div>
+          </div>
         </div>
         <div id = "desc">
           <div id = "loc">{weather?.name||'정보를 불러올 수 없습니다.'}</div>
